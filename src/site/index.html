@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ruuvi Sensor</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <div class="ui container">
+            <div class="ui segment">
+                <h1 class="ui header"><i class="icon">Ⓡ</i> Ruuvi Sensor</h1>
+                <div class="ui stackable three column cards" data-url-ws="ws://localhost:8080/">
+                    <div class="ui right aligned card">
+                        <div class=" content">
+                            <div class="right aligned header"><i class="three quarters thermometer icon"></i><data value="temperature">-</data>&nbsp;°C</div>
+                            <div class="right aligned description">Sensor temperature</div>
+                        </div>
+                    </div>
+                    <div class="ui card">
+                        <div class="content">
+                            <div class="right aligned header"><i class="umbrella icon"></i><data value="humidity">-</data>&nbsp;%</div>
+                            <div class="right aligned description">Relative humidity</div>
+                        </div>
+                    </div>
+                    <div class="ui card">
+                        <div class="content">
+                            <div class="right aligned header"><i class="plane icon"></i> <data value="pressure">-</data>&nbsp;Pa</div>
+                            <div class="right aligned description">Barometric pressure</div>
+                        </div>
+                    </div>
+                    <div class="ui card">
+                        <div class="content">
+                            <div class="right aligned header"><i class="resize horizontal icon"></i><data value="accelerationX">-</data>&nbsp;mg<sub>0</sub></div>
+                            <div class="right aligned description">Acceleration in X direction</div>
+                        </div>
+                    </div>
+                    <div class="ui card">
+                        <div class="content">
+                            <div class="right aligned header"><i class="resize horizontal icon"></i><data value="accelerationY">-</data>&nbsp;mg<sub>0</sub></div>
+                            <div class="right aligned description">Acceleration in Y direction</div>
+                        </div>
+                    </div>
+                    <div class="ui card">
+                        <div class="content">
+                            <div class="right aligned header"><i class="long arrow down icon"></i><data value="accelerationZ">-</data>&nbsp;mg<sub>0</sub></div>
+                            <div class="right aligned description">Acceleration in Z direction</div>
+                        </div>
+                    </div>
+                    <div class="ui card">
+                        <div class="content">
+                            <div class="right aligned header"><i class="wait icon"></i><data value="time">-</data>&nbsp;ms</div>
+                            <div class="right aligned description">Unix epoch time</div>
+                        </div>
+                    </div>
+                    <div class="ui card">
+                        <div class="content">
+                            <div class="right aligned header"><i class="high battery icon"></i><data value="battery">-</data>&nbsp;mAh</div>
+                            <div class="right aligned description">Battery capacity</div>
+                        </div>
+                    </div>
+                    <div class="ui card">
+                        <div class="content">
+                            <div class="right aligned header"><i class="hashtag icon"></i><data value="uuid">f1cbe399554047dea4dfc8facae7aad4</data></div>
+                            <div class="right aligned description">UUID</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="index.js"></script>
+    </body>
+</html>

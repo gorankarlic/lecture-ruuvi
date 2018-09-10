@@ -3,14 +3,11 @@
     "name": "Ruuvi",
     "version": "1.0.0",
     "dependencies": {
-        "express": "^4.16.3",
+        "express": "4.16.3",
         "noble": "1.9.1",
-        "why-is-node-running": "^2.0.3",
         "ws": "6.0.0"
     },
     "scripts": {
-        "start-client": "node src/main/sensor-client.js localhost 8080",
-        "start-server": "node src/main/sensor-server.js localhost 8080",
         "test": "node_modules/.bin/_mocha --exit src/test/**/*Test.js"
     },
     "devDependencies": {
