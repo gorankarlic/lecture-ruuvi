@@ -1,16 +1,17 @@
 {
     "author": "Goran Karlic",
     "name": "Ruuvi",
-    "version": "1.0.0",
+    "version": "0.1.0",
     "dependencies": {
         "express": "4.16.3",
         "noble": "1.9.1",
         "ws": "6.0.0"
     },
     "scripts": {
+        "start": "node src/main/main.js 0.0.0.0 8080",
         "test": "node_modules/.bin/_mocha --exit src/test/**/*Test.js"
     },
     "devDependencies": {
-        "mocha": "^5.2.0"
+        "mocha": "5.2.0"
     }
 }

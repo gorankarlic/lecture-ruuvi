@@ -5,7 +5,7 @@ const EventEmitter = require("events");
 const RuuviProtocol = require("./RuuviProtocol_v3");
 
 /**
- * Ruuvi bluetooth receiver.
+ * Ruuvi sensor service.
  * 
  * @memberof util
  * @see https://github.com/ruuvi/ruuvi-sensor-protocols
@@ -18,38 +18,6 @@ class Ruuvi extends EventEmitter
     constructor()
     {
         super();
-        this.onDiscover = this.onDiscover.bind(this);
-        this.onStateChange = this.onStateChange.bind(this);
-    }
-    
-    onDiscover(peripheral)
-    {
-        if(peripheral.advertisement && peripheral.advertisement.manufacturerData)
-        {
-            const measurement = RuuviProtocol.parse(peripheral.advertisement.manufacturerData);
-            if(measurement !== null)
-            {
-                measurement.uuid = peripheral.uuid;
-                this.emit("measurement", measurement);
-            }
-        }
-    }
-    
-    onStateChange(state)
-    {
-        switch(state)
-        {
-            case "poweredOn":
-            {
-                noble.startScanning([], true);
-                break;
-            }
-            case "poweredOff":
-            {
-                noble.stopScanning();
-                break;
-            }
-        }
     }
     
     /**
@@ -57,8 +25,35 @@ class Ruuvi extends EventEmitter
      */
     start()
     {
-        noble.addListener("stateChange", this.onStateChange);
-        noble.addListener("discover", this.onDiscover);
+        noble.addListener("stateChange", (state) =>
+        {
+            switch(state)
+            {
+                case "poweredOn":
+                {
+                    noble.startScanning([], true);
+                    break;
+                }
+                case "poweredOff":
+                {
+                    noble.stopScanning();
+                    break;
+                }
+            }
+        });
+        noble.addListener("discover", (peripheral) =>
+        {
+            if(peripheral.advertisement && peripheral.advertisement.manufacturerData)
+            {
+                const measurement = RuuviProtocol.parse(peripheral.advertisement.manufacturerData);
+                if(measurement !== null)
+                {
+                    peripheral.connect();
+                    measurement.uuid = peripheral.uuid;
+                    this.emit("measurement", measurement);
+                }
+            }
+        });
     }
     
     /**
@@ -66,8 +61,6 @@ class Ruuvi extends EventEmitter
      */
     stop()
     {
-        noble.removeListener("stateChange", this.onStateChange);
-        noble.removeListener("discover", this.onDiscover);
     }
 }
 

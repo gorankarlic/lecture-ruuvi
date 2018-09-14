@@ -39,19 +39,20 @@ class RuuviProtocol_v3
         const humidity_percent = buffer.readUInt8(3) / 2;
         const temperature_C = buffer.readUInt8(4) + buffer.readUInt8(5) / 100;
         const pressure_Pa = buffer.readUInt16BE(6) + 50000;
-        const accelerationX_mG = buffer.readInt16BE(8);
-        const accelerationY_mG = buffer.readInt16BE(10);
-        const accelerationZ_mG = buffer.readInt16BE(12);
+        const accelerationX_mg0 = buffer.readInt16BE(8);
+        const accelerationY_mg0 = buffer.readInt16BE(10);
+        const accelerationZ_mg0 = buffer.readInt16BE(12);
         const battery_mA = buffer.readUInt16BE(14);
         const result =
         {
-            accelerationX: accelerationX_mG,
-            accelerationY: accelerationY_mG,
-            accelerationZ: accelerationZ_mG,
+            accelerationX: accelerationX_mg0,
+            accelerationY: accelerationY_mg0,
+            accelerationZ: accelerationZ_mg0,
             battery: battery_mA,
             humidity: humidity_percent,
             pressure: pressure_Pa,
-            temperature: temperature_C
+            temperature: temperature_C,
+            time: new Date().toISOString()
         };
         return result;
     }

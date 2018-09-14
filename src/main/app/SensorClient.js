@@ -31,7 +31,6 @@ class SensorClient
         console.log("Ruuvi measurement", data);
         if(this.client !== null && this.client.readyState === 1)
         {
-            data.time = Date.now();
             this.client.send(JSON.stringify(data));
         }
     };

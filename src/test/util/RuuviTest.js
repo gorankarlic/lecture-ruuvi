@@ -5,7 +5,7 @@ const Ruuvi = require("../../main/util/Ruuvi");
 
 describe("Ruuvi", function ()
 {
-    describe("get sensor data", function()
+    describe("measurement", function()
     {
         const ruuvi = new Ruuvi();
 
@@ -24,6 +24,7 @@ describe("Ruuvi", function ()
             this.timeout(30000);
             ruuvi.on("measurement", (measurement) =>
             {
+                assert.strictEquals(typeof measurement.accelerationX, "Number");
                 done();
             });
         });
