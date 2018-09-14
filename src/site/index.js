@@ -25,6 +25,5 @@ window.addEventListener("load", () =>
         };
         connecting = true;
     };
-    const url = document.querySelector("[data-url-ws]").dataset.urlWs;
-    connect(url);
+    connect(`ws://${window.location.hostname}:${window.location.port}/`);
 });
