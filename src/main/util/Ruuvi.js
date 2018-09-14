@@ -49,7 +49,7 @@ class Ruuvi extends EventEmitter
                 if(measurement !== null)
                 {
                     peripheral.connect();
-                    measurement.uuid = peripheral.uuid;
+                    measurement.uuid = peripheral.address || peripheral.uuid;
                     this.emit("measurement", measurement);
                 }
             }
